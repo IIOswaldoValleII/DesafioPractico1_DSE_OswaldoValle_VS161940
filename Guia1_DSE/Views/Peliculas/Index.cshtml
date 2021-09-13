@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MvcPelicula.Models.Pelicula>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Películas</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+   @using (Html.BeginForm("Index", "Peliculas", FormMethod.Get))
+
+   {
+    <p>
+        Genre: @Html.DropDownList("generoPelicula", "All")
+        Director: @Html.DropDownList("listaDirector", "All")
+        Title: @Html.TextBox("BuscarString") <br />
+        <input type="submit" value="Filter" />
+    </p>
+    }
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaLanzamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productor)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaLanzamiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productor)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("consultar", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
